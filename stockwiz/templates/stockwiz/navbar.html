@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Bebas+Neue&display=swap');
+        #navb {
+            background-color: #b8c6db;
+background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+        }
+        .alink {
+            display: inline;
+            text-decoration: none;
+            color: black;
+            font-size: larger;
+            font-weight: bolder;
+            font-family: 'Akaya Telivigala', cursive;
+            opacity: 1;
+            padding: 14px 16px;
+            vertical-align: 40px;
+        }
+        #logo {
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navb">
+        <nav>
+            <img src="{% static '\images\stockwizlogo.png' %}" id="logo">
+            <a  href="" class="alink">Home</a>
+            <a href="" class="alink">About</a>
+            <a href="" class="alink">Investors</a>
+            <a href="" class="alink">Terms of Services</a>
+        </nav>
+    </div>
+</body>
+</html>

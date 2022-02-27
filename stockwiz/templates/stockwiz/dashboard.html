@@ -1,0 +1,173 @@
+{% extends 'stockwiz/home.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}stockWiz{% endblock %}</title>
+    <!-- #CSS files  -->
+    <link rel="stylesheet" text="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-2.4.2.min.css">
+    <link rel="stylesheet" text="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.4.2.min.css">
+    <link rel="stylesheet" text="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-tables-2.4.2.min.css">
+    <link rel="stylesheet" text="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-tables-2.4.2.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Bebas+Neue&display=swap');
+
+        form {
+            margin-top: 200px;
+            font-size: larger;
+            font-weight: bolder;
+            font-family: 'Akaya Telivigala', cursive;
+        }
+
+        #sub {
+            height: 40px;
+            width: 80px;
+            margin-top: 20px;
+            font-size: larger;
+            font-weight: bolder;
+            font-family: 'Akaya Telivigala', cursive;
+            border-radius: 5px;
+            margin-left: 125px;
+            background-color: #eec0c6;
+            background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+        }
+
+        #sub:hover {
+            background-color: turquoise;
+        }
+
+        #in {
+            background-color: turquoise;
+            height: 20px;
+            border-radius: 5px;
+            font-family: 'Akaya Telivigala', cursive;
+            font-size: medium;
+        }
+
+        #crt {
+            display: flex;
+            justify-content: center;
+            margin-top: 125px;
+        }
+
+        #sto {
+            font-weight: bolder;
+            font-family: 'Akaya Telivigala', cursive;
+            width: 143px;
+            height: 28px;
+            background-color: #eec0c6;
+            border-radius: 5px;
+            background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+        }
+
+        input[type="date"] {
+            background-color: #eec0c6;
+            background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+            outline: none;
+            border-radius: 5px;
+            font-weight: bolder;
+            font-family: 'Akaya Telivigala', cursive;
+        }
+
+        input[type="date"]::-webkit-clear-button {
+            font-size: 18px;
+            height: 30px;
+            position: relative;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button {
+            height: 28px;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="crt">
+        {{ content|safe }}
+        <form method="POST">
+            {% csrf_token %}
+            <table id="tf">
+                <tr>
+                    <td><label for="sub">Enter Stock Symbol here: </label></td>
+                    <td>
+                        <select name="stocks" autofocus id="sto" required>
+                            <option value="">--Please choose an option--</option>
+                            <option>AAPL</option>
+                            <option>ABBV</option>
+                            <option>ABT</option>
+                            <option>ACN</option>
+                            <option>ADBE</option>
+                            <option>AMZN</option>
+                            <option>ASML</option>
+                            <option>AVGO</option>
+                            <option>BABA</option>
+                            <option>BAC</option>
+                            <option>CMCSA</option>
+                            <option>COST</option>
+                            <option>CRM</option>
+                            <option>CSCO</option>
+                            <option>CVX</option>
+                            <option>DIS</option>
+                            <option>FB</option>
+                            <option>GOOG</option>
+                            <option>GOOGL</option>
+                            <option>HD</option>
+                            <option>JNJ</option>
+                            <option>JPM</option>
+                            <option>KO</option>
+                            <option>LLY</option>
+                            <option>MA</option>
+                            <option>MSFT</option>
+                            <option>NKE</option>
+                            <option>NTES</option>
+                            <option>NVDA</option>
+                            <option>NVO</option>
+                            <option>ORCL</option>
+                            <option>PEP</option>
+                            <option>PFE</option>
+                            <option>PG</option>
+                            <option>SHEL</option>
+                            <option>TM</option>
+                            <option>TMO</option>
+                            <option>TSLA</option>
+                            <option>TSM</option>
+                            <option>UNH</option>
+                            <option>V</option>
+                            <option>VZ</option>
+                            <option>WFC</option>
+                            <option>WMT</option>
+                            <option>XOM</option>
+                        </select>
+                    </td>
+                    <!-- <td><input type="text" id="in" name="stocks" required></td> -->
+                </tr>
+                <tr>
+                    <td><label for="sub">Enter Date here: </label></td>
+                    <td><input type="date" name="date" required></td>
+                </tr>
+            </table>
+            <button type="submit" id="sub">Submit</button>
+        </form>
+        {{div| safe}}
+    </div>
+</body>
+<!-- Javascript files -->
+<script text="type/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.2.min.js"></script>
+<script text="type/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.2.min.js"></script>
+<script text="type/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.2.min.js"></script>
+<script text="type/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.4.2.min.js"></script>
+<script text="type/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-gl-2.4.2.min.js"></script>
+<script text="type/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-2.4.2.min.js"></script>
+{{script | safe}}
+
+</html>
+{% endblock %}
